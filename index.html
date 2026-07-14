@@ -187,7 +187,7 @@
 
     /* ─── MIND MAP ────────────────────────────────── */
     .map-outer {
-      max-width:860px; margin:0 auto;
+      max-width:1100px; margin:0 auto;
       border-radius:16px;
       background:var(--bg3);
       border:1px solid var(--border);
@@ -716,9 +716,10 @@ function renderMindMap() {
     ctx.clearRect(0, 0, cw, ch);
 
     const cx = cw / 2, cy = ch / 2;
-    const R  = Math.min(cw, ch) * 0.41;
-    const nW = Math.max(Math.min(cw * 0.12, 88), 54);
-    const nH = 34;
+    const R  = Math.min(cw, ch) * 0.40;
+    /* nW = 90% of the arc-chord between adjacent nodes — guarantees no overlap */
+    const nW = Math.max(Math.floor(2 * R * Math.sin(Math.PI / DOMAINS.length) * 0.90), 60);
+    const nH = 36;
 
     nodes = DOMAINS.map((d, i) => {
       const a = (i / DOMAINS.length) * Math.PI * 2 - Math.PI / 2;
@@ -745,9 +746,19 @@ function renderMindMap() {
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText('SR', cx, cy);
 
+    /* helper: draw text with ellipsis if wider than maxW */
+    function ellipsis(ctx, text, x, y, maxW) {
+      if (ctx.measureText(text).width <= maxW) { ctx.fillText(text, x, y); return; }
+      let t = text;
+      while (t.length > 1 && ctx.measureText(t + '…').width > maxW) t = t.slice(0, -1);
+      ctx.fillText(t + '…', x, y);
+    }
+
     /* nodes */
     nodes.forEach(({ x, y, d }, i) => {
       const on = i === hot;
+
+      /* background + border */
       rrect(ctx, x-nW/2, y-nH/2, nW, nH, 7);
       ctx.fillStyle   = on ? d.color+'2e' : d.color+'15';
       ctx.fill();
@@ -755,24 +766,34 @@ function renderMindMap() {
       ctx.lineWidth   = on ? 1.8 : 1.2;
       ctx.stroke();
 
-      /* abbr dot */
-      const ir = 10, ix = x - nW/2 + ir + 5;
+      /* clip all text to the node box */
+      ctx.save();
+      rrect(ctx, x-nW/2, y-nH/2, nW, nH, 7);
+      ctx.clip();
+
+      /* abbr badge — compact circle on the left */
+      const ir = 9, ix = x - nW/2 + ir + 5;
       ctx.beginPath(); ctx.arc(ix, y, ir, 0, Math.PI*2);
-      ctx.fillStyle = d.color+'28'; ctx.fill();
+      ctx.fillStyle = d.color+'30'; ctx.fill();
       ctx.fillStyle = d.color;
-      ctx.font = `700 8px Inter, sans-serif`;
+      ctx.font = '700 7px Inter, sans-serif';
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText(d.abbr, ix, y);
 
-      /* title */
-      const tx = ix + ir + 4;
-      ctx.fillStyle   = on ? '#fff' : '#e2e8f0';
-      ctx.font = `600 ${Math.round(nW * 0.098 + 1.4)}px Inter, sans-serif`;
+      /* title + subtitle, clipped */
+      const tx  = ix + ir + 5;
+      const mxW = x + nW/2 - tx - 5;   /* available width to right edge */
+
+      ctx.fillStyle = on ? '#fff' : '#e2e8f0';
+      ctx.font = '600 9px Inter, sans-serif';
       ctx.textAlign = 'left';
-      ctx.fillText(d.title, tx, y - 5);
+      ellipsis(ctx, d.title, tx, y - 5, mxW);
+
       ctx.fillStyle = '#8899aa';
-      ctx.font = '400 7.5px Inter, sans-serif';
-      ctx.fillText((d.sub.split('·')[0]||d.sub).trim(), tx, y + 8);
+      ctx.font = '400 7px Inter, sans-serif';
+      ellipsis(ctx, (d.sub.split('·')[0]||d.sub).trim(), tx, y + 7, mxW);
+
+      ctx.restore();
     });
   }
 
