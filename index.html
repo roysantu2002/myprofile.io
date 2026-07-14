@@ -132,19 +132,20 @@
     }
     .hero h1 .gold { color:var(--gold); }
 
-    .hero-role { font-size: clamp(1rem,2.5vw,1.25rem); color:var(--muted); margin-bottom:0.5rem; height:1.9em; position:relative; }
+    .hero-role { font-size: clamp(1rem,2.5vw,1.25rem); color:var(--muted); margin-bottom:0.5rem; height:2em; position:relative; white-space:nowrap; }
     .role-word {
-      position:absolute; left:0; right:0;
+      position:absolute; left:50%; transform:translateX(-50%);
+      white-space:nowrap;
       opacity:0; animation:fadew 9s infinite;
     }
     .role-word:nth-child(2) { animation-delay:3s; }
     .role-word:nth-child(3) { animation-delay:6s; }
     @keyframes fadew {
-      0%{opacity:0;transform:translateY(6px)}
-      8%{opacity:1;transform:translateY(0)}
-      30%{opacity:1;transform:translateY(0)}
-      38%{opacity:0;transform:translateY(-6px)}
-      100%{opacity:0}
+      0%{opacity:0;transform:translateX(-50%) translateY(6px)}
+      8%{opacity:1;transform:translateX(-50%) translateY(0)}
+      30%{opacity:1;transform:translateX(-50%) translateY(0)}
+      38%{opacity:0;transform:translateX(-50%) translateY(-6px)}
+      100%{opacity:0;transform:translateX(-50%) translateY(-6px)}
     }
 
     .hero-countries {
@@ -387,7 +388,7 @@
     <p class="sec-desc">Click any node to jump to its full domain breakdown below.</p>
   </div>
   <div class="map-outer">
-    <canvas id="mindmap"></canvas>
+    <canvas id="mindmap-canvas"></canvas>
   </div>
   <p class="map-hint">Click a node · Hover to explore</p>
 </section>
@@ -686,7 +687,7 @@ function renderCards() {
 
 /* ─── MIND MAP CANVAS ──────────────────────────────────── */
 function renderMindMap() {
-  const canvas = document.getElementById('mindmap');
+  const canvas = document.getElementById('mindmap-canvas');
   const wrap   = canvas.parentElement;
   const DPR    = window.devicePixelRatio || 1;
   let   hot    = -1;
@@ -815,8 +816,12 @@ function initFade() {
 /* ─── BOOT ─────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   renderCards();
-  renderMindMap();
+  try { renderMindMap(); } catch(e) { console.error('mindmap error:', e); }
   setTimeout(initFade, 100);
+  /* Fallback: make all cards visible even if observer doesn't fire */
+  setTimeout(() => {
+    document.querySelectorAll('.fup').forEach(el => el.classList.add('in'));
+  }, 800);
 });
 </script>
 </body>
