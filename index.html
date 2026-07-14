@@ -291,16 +291,116 @@
     .fup { opacity:0; transform:translateY(18px); transition:opacity 0.55s, transform 0.55s; }
     .fup.in { opacity:1; transform:translateY(0); }
 
+    /* ─── MOBILE MIND MAP PILLS ──────────────────── */
+    .map-mobile {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .map-pill {
+      display: flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      font-size: 0.78rem; font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+      text-decoration: none; color: var(--text);
+    }
+    .map-pill-dot {
+      width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+    }
+
     /* ─── RESPONSIVE ──────────────────────────────── */
     @media(max-width:640px) {
-      nav { padding:0.75rem 1rem; }
-      .nav-sub { display:none; }
-      .metrics { gap:1.5rem; }
-      .metric-val { font-size:2rem; }
-      .sec { padding:3.5rem 1.25rem; }
-      .cards-grid { grid-template-columns:1fr; }
-      .timeline { padding-left:1.25rem; }
-      .t-dot { left:-1.25rem; }
+      /* NAV */
+      nav { padding: 0.65rem 1rem; gap: 0.5rem; }
+      .nav-sub  { display: none; }
+      .nav-mono { width: 30px; height: 30px; font-size: 0.8rem; border-radius: 7px; }
+      .nav-name { font-size: 0.82rem; }
+      .nav-actions .btn-ghost { display: none; }   /* hide LinkedIn in nav */
+      .nav-actions .btn-gold  { padding: 0.4rem 0.9rem; font-size: 0.8rem; }
+
+      /* HERO */
+      .hero { padding: 5rem 1.25rem 3rem; }
+      .badge-pill { font-size: 0.62rem; padding: 0.25rem 0.75rem; }
+      .hero-photo { width: 88px; height: 88px; margin-bottom: 1rem; }
+      .hero h1 { font-size: 2.6rem; letter-spacing: -0.01em; }
+      .hero-role { font-size: 0.95rem; height: 1.8em; margin-bottom: 0.75rem; }
+      .hero-countries { gap: 0.35rem; }
+      .cpill { font-size: 0.65rem; padding: 0.15rem 0.5rem; }
+
+      /* METRICS — 2×2 grid */
+      .metrics {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem 2rem;
+        width: 100%; max-width: 260px;
+        margin-left: auto; margin-right: auto;
+        margin-bottom: 2rem;
+      }
+      .metric-val { font-size: 2rem; }
+      .metric-lbl { font-size: 0.68rem; }
+
+      /* CTA BUTTONS — full-width stacked */
+      .hero-cta {
+        flex-direction: column;
+        width: 100%; max-width: 300px;
+        margin: 0 auto;
+      }
+      .hero-cta .btn {
+        width: 100%; justify-content: center;
+        padding: 0.8rem 1rem; font-size: 0.9rem;
+      }
+
+      /* SCROLL INDICATOR */
+      .scroll-ind { margin-top: 2rem; }
+
+      /* SECTIONS */
+      .sec { padding: 3rem 1.25rem; }
+      .sec-title { font-size: 1.6rem; }
+
+      /* MIND MAP — hide canvas, show pill grid */
+      .map-outer { display: none; }
+      .map-hint  { display: none; }
+      .map-mobile { display: grid; }
+
+      /* DOMAIN CARDS — single column */
+      .cards-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+
+      /* CAREER TIMELINE */
+      .timeline { padding-left: 1.25rem; }
+      .t-dot { left: -1.3rem; width: 16px; height: 16px; }
+      .t-dot::after { width: 6px; height: 6px; }
+      .t-role { font-size: 0.95rem; }
+      .t-bul li { font-size: 0.8rem; }
+
+      /* CERTIFICATIONS */
+      .certs-grid { flex-direction: column; align-items: stretch; }
+      .cert { max-width: 100%; min-width: unset; }
+
+      /* HOBBIES */
+      .hobbies-grid { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+
+      /* CONTACT */
+      .contact-acts {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 320px;
+        margin: 1.5rem auto 0;
+      }
+      .contact-acts .btn {
+        width: 100%; justify-content: center;
+        padding: 0.8rem 1rem; font-size: 0.9rem;
+      }
+    }
+
+    @media(max-width:380px) {
+      .map-mobile { grid-template-columns: repeat(2, 1fr); }
+      .hobbies-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -390,6 +490,7 @@
   <div class="map-outer">
     <canvas id="mindmap-canvas"></canvas>
   </div>
+  <div class="map-mobile" id="map-mobile"></div>
   <p class="map-hint">Click a node · Hover to explore</p>
 </section>
 
@@ -665,6 +766,19 @@ const DOMAINS = [
 
 /* ─── RENDER CARDS ─────────────────────────────────────── */
 function renderCards() {
+  /* mobile pill grid */
+  const pills = document.getElementById('map-mobile');
+  DOMAINS.forEach(d => {
+    const pill = document.createElement('a');
+    pill.className = 'map-pill';
+    pill.href = '#card-' + d.id;
+    pill.innerHTML = `<span class="map-pill-dot" style="background:${d.color}"></span>${d.title}`;
+    pill.style.borderColor = d.color + '40';
+    pill.addEventListener('mouseenter', () => { pill.style.background = d.color+'18'; pill.style.borderColor = d.color+'99'; });
+    pill.addEventListener('mouseleave', () => { pill.style.background = 'var(--bg3)'; pill.style.borderColor = d.color+'40'; });
+    pills.appendChild(pill);
+  });
+
   const grid = document.getElementById('cards-grid');
   DOMAINS.forEach(d => {
     const bg   = d.color + '18';
