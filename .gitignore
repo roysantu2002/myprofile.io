@@ -1,0 +1,6 @@
+# Private files — never commit
+*Prep_Guide*
+*prep_guide*
+*interview*
+*.DS_Store
+*.env
