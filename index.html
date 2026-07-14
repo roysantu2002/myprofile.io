@@ -1,254 +1,823 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Santu Roy</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="keywords" content="Java, Selenium, Python, Web, App, IOS, Android, Native, Quality, Test Automation, Banking, Insurance" />
-    <meta name="description" content="" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Santu Roy — AI Solution Architect · Agentic AI · 18+ Years</title>
+  <meta name="description" content="Santu Roy — AI Solution Architect, Agentic AI Specialist and Full-Stack Engineering Leader with 18+ years across banking, fintech and enterprise SaaS in 6 countries.">
+  <meta name="keywords" content="AI Solution Architect, Agentic AI, LangGraph, RAG, MCP, Azure OpenAI, Anthropic Claude, AWS Bedrock, Spring Boot, FastAPI, React, Kubernetes, Terraform, TOGAF">
+  <meta property="og:title" content="Santu Roy — AI Solution Architect">
+  <meta property="og:description" content="18+ years · 6 countries · Agentic AI · Enterprise Architecture · Banking & Fintech">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────── */
+    :root {
+      --bg:       #070c18;
+      --bg2:      #0c1220;
+      --bg3:      #111827;
+      --text:     #e2e8f0;
+      --muted:    #8899aa;
+      --border:   rgba(255,255,255,0.07);
+      --gold:     #f0b429;
+      --gold-dim: rgba(240,180,41,0.12);
+    }
 
-    <!-- stylesheet css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/templatemo-gray.css" />
-  </head>
-  <body data-spy="scroll" data-target=".navbar-collapse">
-    <!-- preloader section -->
-    <div class="preloader">
-      <div class="sk-spinner sk-spinner-wordpress">
-        <span class="sk-inner-circle"></span>
-      </div>
+    /* ─── RESET ───────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed; top:0; left:0; right:0; z-index:200;
+      padding: 0.9rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(7,12,24,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-left { display:flex; align-items:center; gap:0.9rem; }
+    .nav-mono {
+      width:38px; height:38px; border-radius:9px;
+      background: var(--gold-dim);
+      border: 1.5px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Space Grotesk',sans-serif;
+      font-weight:700; font-size:1rem;
+      color: var(--gold);
+    }
+    .nav-name { font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:0.95rem; }
+    .nav-sub  { font-size:0.72rem; color:var(--muted); margin-top:1px; }
+    .nav-actions { display:flex; gap:0.6rem; }
+    .btn {
+      display:inline-flex; align-items:center; gap:0.35rem;
+      padding:0.45rem 1.1rem;
+      border-radius:6px;
+      font-size:0.82rem; font-weight:500;
+      transition: all 0.18s;
+      cursor:pointer;
+    }
+    .btn-ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: transparent;
+    }
+    .btn-ghost:hover { border-color:var(--gold); color:var(--gold); }
+    .btn-gold  { background: var(--gold); color:#000; border:none; font-weight:600; }
+    .btn-gold:hover { background:#fcd34d; }
+
+    /* ─── HERO ────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: 7rem 2rem 5rem;
+      display: flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center;
+      position: relative; overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0; z-index:0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, rgba(34,211,238,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 80% 80%, rgba(167,139,250,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 20% 70%, rgba(240,180,41,0.04) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position:absolute; inset:0; z-index:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 50px 50px;
+      -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+      mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 0%, transparent 100%);
+    }
+    .hero > * { position:relative; z-index:1; }
+
+    .badge-pill {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.3rem 1rem;
+      background: var(--gold-dim);
+      border: 1px solid rgba(240,180,41,0.25);
+      border-radius:100px;
+      color: var(--gold);
+      font-size:0.7rem; font-weight:600;
+      letter-spacing:0.12em; text-transform:uppercase;
+      margin-bottom:1.5rem;
+    }
+    .badge-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); animation:blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero-photo {
+      width:120px; height:120px;
+      border-radius:50%; border: 2.5px solid var(--gold);
+      object-fit:cover; margin-bottom:1.5rem;
+      box-shadow: 0 0 0 6px rgba(240,180,41,0.1), 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 {
+      font-family:'Space Grotesk',sans-serif;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight:700; line-height:1.05; letter-spacing:-0.02em;
+      margin-bottom:0.75rem;
+    }
+    .hero h1 .gold { color:var(--gold); }
+
+    .hero-role { font-size: clamp(1rem,2.5vw,1.25rem); color:var(--muted); margin-bottom:0.5rem; height:1.9em; position:relative; }
+    .role-word {
+      position:absolute; left:0; right:0;
+      opacity:0; animation:fadew 9s infinite;
+    }
+    .role-word:nth-child(2) { animation-delay:3s; }
+    .role-word:nth-child(3) { animation-delay:6s; }
+    @keyframes fadew {
+      0%{opacity:0;transform:translateY(6px)}
+      8%{opacity:1;transform:translateY(0)}
+      30%{opacity:1;transform:translateY(0)}
+      38%{opacity:0;transform:translateY(-6px)}
+      100%{opacity:0}
+    }
+
+    .hero-countries {
+      display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;
+      margin:0.75rem 0 1.75rem;
+    }
+    .cpill {
+      padding:0.2rem 0.7rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius:100px;
+      font-size:0.72rem; color:var(--muted);
+    }
+
+    .metrics { display:flex; gap:2.5rem; justify-content:center; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .metric-val { font-family:'Space Grotesk',sans-serif; font-size:2.6rem; font-weight:700; color:var(--gold); line-height:1; }
+    .metric-lbl { font-size:0.73rem; color:var(--muted); margin-top:0.3rem; letter-spacing:0.04em; }
+
+    .hero-cta { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; }
+
+    .scroll-ind {
+      margin-top:3rem; font-size:0.72rem; color:var(--muted);
+      display:flex; flex-direction:column; align-items:center; gap:0.6rem;
+    }
+    .scroll-line {
+      width:1px; height:40px;
+      background:linear-gradient(to bottom, var(--muted), transparent);
+      animation:sline 2s ease-in-out infinite;
+    }
+    @keyframes sline { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.6);opacity:0.4} }
+
+    /* ─── SECTION COMMONS ─────────────────────────── */
+    .sec { padding:5rem 2rem; }
+    .sec.alt { background:var(--bg2); }
+    .sec-head { text-align:center; margin-bottom:3rem; }
+    .sec-label { font-size:0.7rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:0.5rem; }
+    .sec-title { font-family:'Space Grotesk',sans-serif; font-size: clamp(1.6rem,4vw,2.4rem); font-weight:700; margin-bottom:0.6rem; }
+    .sec-desc   { color:var(--muted); max-width:540px; margin:0 auto; font-size:0.9rem; }
+
+    /* ─── MIND MAP ────────────────────────────────── */
+    .map-outer {
+      max-width:860px; margin:0 auto;
+      border-radius:16px;
+      background:var(--bg3);
+      border:1px solid var(--border);
+      overflow:hidden;
+    }
+    #mindmap { display:block; width:100%; cursor:default; }
+    .map-hint { text-align:center; font-size:0.72rem; color:var(--muted); margin-top:0.75rem; }
+
+    /* ─── DOMAIN CARDS ────────────────────────────── */
+    .cards-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px,1fr));
+      gap:1.25rem; max-width:1200px; margin:0 auto;
+    }
+    .d-card {
+      background:var(--bg3);
+      border-radius:12px;
+      border:1px solid var(--border);
+      border-top-width:2px;
+      overflow:hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .d-card:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(0,0,0,0.4); }
+    .d-card-head {
+      padding:1.1rem 1.25rem;
+      display:flex; align-items:center; gap:0.85rem;
+      border-bottom:1px solid var(--border);
+    }
+    .d-icon {
+      width:40px; height:40px; border-radius:9px;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Space Grotesk',sans-serif; font-size:0.75rem; font-weight:700; flex-shrink:0;
+    }
+    .d-card-head h3 { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:600; }
+    .d-card-head p  { font-size:0.72rem; color:var(--muted); margin-top:2px; }
+    .d-body { padding:1rem 1.25rem; }
+    .d-row  { margin-bottom:0.65rem; }
+    .d-row:last-child { margin-bottom:0; }
+    .d-key { font-size:0.65rem; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:var(--muted); margin-bottom:0.2rem; }
+    .d-val  { font-size:0.82rem; line-height:1.55; }
+
+    /* ─── CAREER TIMELINE ─────────────────────────── */
+    .timeline { max-width:760px; margin:0 auto; position:relative; padding-left:2rem; }
+    .timeline::before {
+      content:''; position:absolute; left:0; top:8px; bottom:8px; width:2px;
+      background:linear-gradient(to bottom, var(--gold) 0%, rgba(240,180,41,0.1) 100%);
+    }
+    .t-item  { position:relative; padding-left:1.5rem; margin-bottom:2.5rem; }
+    .t-item:last-child { margin-bottom:0; }
+    .t-dot   {
+      position:absolute; left:-2rem; top:5px;
+      width:18px; height:18px; border-radius:50%;
+      background:var(--bg); border:2px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .t-dot::after { content:''; width:7px; height:7px; border-radius:50%; background:var(--gold); }
+    .t-date  { font-size:0.72rem; color:var(--gold); font-weight:600; margin-bottom:0.2rem; }
+    .t-role  { font-family:'Space Grotesk',sans-serif; font-size:1rem; font-weight:600; }
+    .t-co    { font-size:0.8rem; color:var(--muted); margin-bottom:0.75rem; }
+    .t-bul li {
+      font-size:0.82rem; color:#cbd5e1;
+      padding-left:1rem; position:relative; margin-bottom:0.35rem;
+    }
+    .t-bul li::before { content:'▸'; position:absolute; left:0; color:var(--gold); font-size:0.7rem; }
+
+    /* ─── CERTIFICATIONS ──────────────────────────── */
+    .certs-grid { display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; max-width:900px; margin:0 auto; }
+    .cert {
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:10px; padding:1.25rem 1.5rem;
+      flex:1; min-width:210px; max-width:270px;
+    }
+    .cert-yr   { font-size:0.68rem; color:var(--gold); font-weight:600; letter-spacing:0.08em; text-transform:uppercase; }
+    .cert-name { font-family:'Space Grotesk',sans-serif; font-size:0.9rem; font-weight:600; margin:0.3rem 0 0.2rem; }
+    .cert-org  { font-size:0.75rem; color:var(--muted); }
+
+    /* ─── HOBBIES ─────────────────────────────────── */
+    .hobbies-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.25rem; max-width:900px; margin:0 auto; }
+    .hcard {
+      background:var(--bg3); border:1px solid var(--border);
+      border-radius:12px; padding:1.5rem 1.25rem; text-align:center;
+    }
+    .hcard-icon  { font-size:2rem; margin-bottom:0.75rem; }
+    .hcard-title { font-family:'Space Grotesk',sans-serif; font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; }
+    .hcard-desc  { font-size:0.78rem; color:var(--muted); }
+    .hcard-link  { display:inline-block; margin-top:0.5rem; font-size:0.75rem; color:var(--gold); border-bottom:1px dashed rgba(240,180,41,0.4); }
+
+    /* ─── CONTACT ─────────────────────────────────── */
+    .contact-ctr  { text-align:center; }
+    .contact-acts { display:flex; gap:0.75rem; justify-content:center; flex-wrap:wrap; margin-top:2rem; }
+    .contact-loc  { margin-top:1.25rem; font-size:0.78rem; color:var(--muted); }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      background:var(--bg); border-top:1px solid var(--border);
+      text-align:center; padding:1.25rem;
+      font-size:0.72rem; color:var(--muted);
+    }
+
+    /* ─── FADE-IN ─────────────────────────────────── */
+    .fup { opacity:0; transform:translateY(18px); transition:opacity 0.55s, transform 0.55s; }
+    .fup.in { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media(max-width:640px) {
+      nav { padding:0.75rem 1rem; }
+      .nav-sub { display:none; }
+      .metrics { gap:1.5rem; }
+      .metric-val { font-size:2rem; }
+      .sec { padding:3.5rem 1.25rem; }
+      .cards-grid { grid-template-columns:1fr; }
+      .timeline { padding-left:1.25rem; }
+      .t-dot { left:-1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <div class="nav-mono">SR</div>
+    <div>
+      <div class="nav-name">Santu Roy</div>
+      <div class="nav-sub">AI Solution Architect · Agentic AI Specialist</div>
+    </div>
+  </div>
+  <div class="nav-actions">
+    <a href="https://linkedin.com/in/roysantu" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+    <a href="Santu_Roy_Resume.pdf" download class="btn btn-gold">↓ Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="badge-pill">
+    <span class="badge-dot"></span>
+    Quick Tech Insights · Interview Mind Map
+  </div>
+
+  <img src="images/tm-easy-profile.jpeg" alt="Santu Roy" class="hero-photo">
+
+  <h1>Santu <span class="gold">Roy</span></h1>
+
+  <div class="hero-role">
+    <span class="role-word">AI Solution Architect</span>
+    <span class="role-word">Agentic AI Specialist</span>
+    <span class="role-word">Engineering Leader</span>
+  </div>
+
+  <div class="hero-countries">
+    <span class="cpill">🇮🇳 India</span>
+    <span class="cpill">🇸🇬 Singapore</span>
+    <span class="cpill">🇹🇭 Thailand</span>
+    <span class="cpill">🇺🇸 USA</span>
+    <span class="cpill">🇦🇺 Australia</span>
+  </div>
+
+  <div class="metrics">
+    <div>
+      <div class="metric-val">18+</div>
+      <div class="metric-lbl">Years Experience</div>
+    </div>
+    <div>
+      <div class="metric-val">6</div>
+      <div class="metric-lbl">Countries</div>
+    </div>
+    <div>
+      <div class="metric-val">35%</div>
+      <div class="metric-lbl">MTTR Reduction</div>
+    </div>
+    <div>
+      <div class="metric-val">40%</div>
+      <div class="metric-lbl">Effort Reduction</div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <a href="#mindmap" class="btn btn-gold">View Mind Map ↓</a>
+    <a href="#domains" class="btn btn-ghost">Tech Domains</a>
+    <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+  </div>
+
+  <div class="scroll-ind">
+    <span>Scroll to explore</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MIND MAP -->
+<section class="sec alt" id="mindmap">
+  <div class="sec-head">
+    <div class="sec-label">Visual Overview</div>
+    <h2 class="sec-title">Tech Expertise Mind Map</h2>
+    <p class="sec-desc">Click any node to jump to its full domain breakdown below.</p>
+  </div>
+  <div class="map-outer">
+    <canvas id="mindmap"></canvas>
+  </div>
+  <p class="map-hint">Click a node · Hover to explore</p>
+</section>
+
+<!-- DOMAIN CARDS -->
+<section class="sec" id="domains">
+  <div class="sec-head">
+    <div class="sec-label">Deep Dive</div>
+    <h2 class="sec-title">Domain Breakdown</h2>
+    <p class="sec-desc">18+ years of enterprise delivery across 11 technology domains.</p>
+  </div>
+  <div class="cards-grid" id="cards-grid"></div>
+</section>
+
+<!-- CAREER -->
+<section class="sec alt" id="career">
+  <div class="sec-head">
+    <div class="sec-label">Experience</div>
+    <h2 class="sec-title">Career Timeline</h2>
+    <p class="sec-desc">Enterprise platforms across banking, fintech and SaaS — in 6 countries.</p>
+  </div>
+  <div class="timeline">
+
+    <div class="t-item fup">
+      <div class="t-dot"></div>
+      <div class="t-date">Apr 2022 – May 2026</div>
+      <div class="t-role">Solution Architect — AI Tech Lead</div>
+      <div class="t-co">Wipro Limited · Bangalore &nbsp;·&nbsp; Clients: Citibank, UBS</div>
+      <ul class="t-bul">
+        <li>Architected Unified Agentic AI platform using Azure OpenAI, Anthropic Claude, AWS Bedrock and Google Gemini — integrated with ServiceNow across multi-cloud, reducing MTTR by 35%.</li>
+        <li>Led CraftBOT, a GenAI DevOps assistant using RAG workflows and Ansible — cutting engineering effort by 40%.</li>
+        <li>Drove end-to-end cloud transformation across AWS, Azure and GCP with IaC and CI/CD — 20–30% delivery optimisation.</li>
+        <li>Mentored cross-functional teams of 8–12; owned stakeholder communication from sprint to C-suite.</li>
+      </ul>
     </div>
 
-    <!-- header section -->
-    <header>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-            <img
-              src="images/tm-easy-profile.jpeg"
-              class="img-responsive img-circle tm-border"
-              alt="Santu Roy's profile pic"
-            />
-            <hr />
-            <h1 class="tm-title bold shadow">Hi, I am Santu</h1>
-            <h1 class="white bold shadow">
-            A Solution Architect, DevOps specialist and Full-stack developer
-            </h1>
-          </div>
-        </div>
+    <div class="t-item fup">
+      <div class="t-dot"></div>
+      <div class="t-date">Mar 2019 – Apr 2022</div>
+      <div class="t-role">Solution Architect</div>
+      <div class="t-co">Cognizant Technology Solutions · Kolkata</div>
+      <ul class="t-bul">
+        <li>Led Python AI initiatives — Rasa, Google Dialogflow and Amazon Lex — across 3 enterprise banking clients.</li>
+        <li>Architected openIDL regulatory data pipeline on Hyperledger Fabric, Spring Boot, MongoDB and AWS.</li>
+        <li>Built full-stack web apps in React, Angular and Next.js; led microservices on Kubernetes.</li>
+      </ul>
+    </div>
+
+    <div class="t-item fup">
+      <div class="t-dot"></div>
+      <div class="t-date">Feb 2014 – May 2018</div>
+      <div class="t-role">Solution Architect</div>
+      <div class="t-co">HP Inc. · Singapore</div>
+      <ul class="t-bul">
+        <li>Built WOOBE/MOOBE printing-as-a-service platform using Python, Django, Flask and NLP workflows.</li>
+        <li>Designed AI/ML solutions for customer behaviour analytics and predictive automation.</li>
+        <li>Developed firmware validation automation suites — significantly reducing manual engineering effort.</li>
+      </ul>
+    </div>
+
+    <div class="t-item fup">
+      <div class="t-dot"></div>
+      <div class="t-date">2006 – 2014 · Earlier</div>
+      <div class="t-role">Senior Engineer → Tech Lead</div>
+      <div class="t-co">Credit Suisse · Standard Chartered · Kasikorn Bank · Wipro (Citi · UBS) &nbsp;·&nbsp; SG · TH · USA · AU</div>
+      <ul class="t-bul">
+        <li>Enterprise banking platform development and test automation architecture across 4 countries.</li>
+        <li>Full-stack engineering, platform modernisation and cross-team technical delivery leadership.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="sec" id="certs">
+  <div class="sec-head">
+    <div class="sec-label">Credentials</div>
+    <h2 class="sec-title">Certifications</h2>
+  </div>
+  <div class="certs-grid">
+    <div class="cert fup">
+      <div class="cert-yr">2025</div>
+      <div class="cert-name">IBM RAG &amp; Agentic AI</div>
+      <div class="cert-org">IBM</div>
+    </div>
+    <div class="cert fup">
+      <div class="cert-yr">2026 · Pursuing</div>
+      <div class="cert-name">Executive PG in Generative AI</div>
+      <div class="cert-org">IIT Kharagpur</div>
+    </div>
+    <div class="cert fup">
+      <div class="cert-yr">2022</div>
+      <div class="cert-name">Professional Certificate in Blockchain</div>
+      <div class="cert-org">IIT Kanpur</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOBBIES -->
+<section class="sec alt" id="hobbies">
+  <div class="sec-head">
+    <div class="sec-label">Beyond the Stack</div>
+    <h2 class="sec-title">Life &amp; Interests</h2>
+    <p class="sec-desc">The human side of an 18-year engineering journey.</p>
+  </div>
+  <div class="hobbies-grid">
+    <div class="hcard fup">
+      <div class="hcard-icon">📚</div>
+      <div class="hcard-title">Published Author</div>
+      <div class="hcard-desc">5 published books spanning technology, numerology and self-development.</div>
+    </div>
+    <div class="hcard fup">
+      <div class="hcard-icon">🎬</div>
+      <div class="hcard-title">YouTube Creator</div>
+      <div class="hcard-desc">2 active channels — one on Numerology &amp; spirituality, one on Tech &amp; AI.</div>
+    </div>
+    <div class="hcard fup">
+      <div class="hcard-icon">🔢</div>
+      <div class="hcard-title">Numerology App Founder</div>
+      <div class="hcard-desc">Founded AuraYug — a numerology platform and spiritual community.</div>
+      <a href="https://aurayug.com" target="_blank" rel="noopener" class="hcard-link">aurayug.com ↗</a>
+    </div>
+    <div class="hcard fup">
+      <div class="hcard-icon">🎓</div>
+      <div class="hcard-title">Udemy Instructor</div>
+      <div class="hcard-desc">Numerology certification courses teaching students worldwide.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec" id="contact">
+  <div class="contact-ctr">
+    <div class="sec-label">Reach Out</div>
+    <h2 class="sec-title">Let's Connect</h2>
+    <p class="sec-desc">Open to global opportunities in AI architecture, agentic systems and engineering leadership.</p>
+    <div class="contact-acts">
+      <a href="mailto:roysantu2002@gmail.com" class="btn btn-gold">✉ roysantu2002@gmail.com</a>
+      <a href="https://linkedin.com/in/roysantu" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+      <a href="Santu_Roy_Resume.pdf" download class="btn btn-ghost">↓ Download Resume PDF</a>
+    </div>
+    <p class="contact-loc">📍 Kolkata, India &nbsp;·&nbsp; Available for global remote &amp; relocation</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Santu Roy &nbsp;·&nbsp; AI Solution Architect &nbsp;·&nbsp;
+     <a href="mailto:roysantu2002@gmail.com" style="color:var(--gold)">roysantu2002@gmail.com</a>
+  </p>
+</footer>
+
+<script>
+/* ─── DOMAIN DATA ──────────────────────────────────────── */
+const DOMAINS = [
+  {
+    id:'career', abbr:'CA', color:'#2dd4bf',
+    title:'Career', sub:'18+ yrs · 6 countries',
+    rows:[
+      ['Span','18+ years delivering enterprise platforms across banking, fintech & SaaS'],
+      ['Worked Across','Singapore · Thailand · USA · Australia · India'],
+      ['Key Employers','Wipro (Citi · UBS) · Cognizant · HP Inc. · Credit Suisse · Std Chartered · Kasikorn'],
+      ['Current Role','Solution Architect — AI Tech Lead, Wipro (2022–Present)'],
+      ['Impact','35% MTTR ↓  ·  40% Engineering Effort ↓  ·  20–30% Delivery Optimisation'],
+    ]
+  },
+  {
+    id:'hobbies', abbr:'HB', color:'#a78bfa',
+    title:'Hobbies', sub:'Author · YouTube · Numerology',
+    rows:[
+      ['Author','5 published books'],
+      ['YouTube','2 channels — Numerology & Tech'],
+      ['Numerology App','Founder, aurayug.com'],
+      ['Udemy','Numerology courses instructor'],
+    ]
+  },
+  {
+    id:'architecture', abbr:'AR', color:'#fb923c',
+    title:'Architecture', sub:'Enterprise & cloud-native',
+    rows:[
+      ['Governance','TOGAF-aligned architecture governance & transformation roadmaps'],
+      ['Platform Design','Multi-cloud, multi-agent platform architecture (Azure · AWS · GCP)'],
+      ['Flagship Builds','Unified Agentic AI Platform (Citibank) · CraftBOT GenAI DevOps Assistant'],
+      ['Leadership','Cross-functional delivery — engineering sprint to C-suite'],
+    ]
+  },
+  {
+    id:'design', abbr:'DP', color:'#fbbf24',
+    title:'Design Principles', sub:'SOLID · Patterns',
+    rows:[
+      ['Monolith','Single deploy, simplest ops — coupling risk at scale'],
+      ['Modular Monolith','Domain modules, one deploy — splits out later'],
+      ['Microservices','Independent scale + deploy · own datastore per service'],
+      ['Patterns','Repository · Factory · Builder — decoupled, testable domain layers'],
+      ['Also','SOLID · DRY · KISS'],
+    ]
+  },
+  {
+    id:'backend', abbr:'BE', color:'#f87171',
+    title:'Backend', sub:'Python · Java · APIs',
+    rows:[
+      ['Languages & Frameworks','Python (Django · FastAPI) · Java (Spring Boot) · Node.js (NestJS · Express)'],
+      ['APIs & Messaging','REST · GraphQL · Microservices · Kafka · Redis'],
+      ['Data & Cache','PostgreSQL · MySQL · MongoDB · Oracle · Elasticsearch'],
+      ['Security','JWT / ID Token · Config & Secrets · WAF'],
+      ['Deploy','Docker · Kubernetes · Azure Container Apps'],
+    ]
+  },
+  {
+    id:'frontend', abbr:'FE', color:'#f472b6',
+    title:'Frontend', sub:'React · Next.js · Angular',
+    rows:[
+      ['Core','React · Next.js · Angular · Tailwind CSS · Material UI'],
+      ['State','Redux'],
+      ['Architecture','Micro-frontend — Module Federation'],
+      ['Auth','ID Token Provider — OIDC / MSAL'],
+      ['Testing','Mocha (test runner) · Chai (assertions, BDD/TDD)'],
+    ]
+  },
+  {
+    id:'middleware', abbr:'MW', color:'#60a5fa',
+    title:'Middleware', sub:'Gateway · LB · Proxy',
+    rows:[
+      ['Pipeline','Auth · Logging · Throttling'],
+      ['Gateway','Reverse Proxy / API Gateway'],
+      ['Load Balancer','Traffic split · health checks'],
+      ['NGINX','Routing · TLS termination'],
+    ]
+  },
+  {
+    id:'blockchain', abbr:'BW', color:'#818cf8',
+    title:'Blockchain, Web3', sub:'Ethereum · Hyperledger',
+    rows:[
+      ['Core Stack','Ethereum · Solidity · Smart Contracts'],
+      ['Enterprise Ledger','Hyperledger Fabric · dApps · NFTs'],
+      ['Flagship','openIDL regulatory pipeline — Hyperledger Fabric · Spring Boot · MongoDB · AWS'],
+      ['Certified','Professional Certificate in Blockchain, IIT Kanpur (2022)'],
+    ]
+  },
+  {
+    id:'ai', abbr:'AI', color:'#34d399',
+    title:'AI / Agentic', sub:'RAG · LangGraph · MCP',
+    rows:[
+      ['LLM APIs','Anthropic Claude · Azure OpenAI · AWS Bedrock · Google Gemini'],
+      ['Agentic','LangGraph · Multi-Agent Systems · MCP'],
+      ['Retrieval','RAG — Traditional & Agentic'],
+      ['Data & ML','Pandas · NumPy · TensorFlow · OCR'],
+      ['Certified','IBM RAG & Agentic AI (2025) · Exec. PG GenAI, IITKGP (2026, pursuing)'],
+    ]
+  },
+  {
+    id:'infra', abbr:'IN', color:'#94a3b8',
+    title:'Infra', sub:'IaC · CI/CD · K8s',
+    rows:[
+      ['Version Control','GitHub · GitLab'],
+      ['IaC','Terraform — provisioning, state mgmt · Ansible — config mgmt, playbooks'],
+      ['CI/CD','GitHub Actions · GitLab CI/CD · Jenkins · Azure DevOps'],
+      ['Containers','Docker · Kubernetes'],
+      ['Enterprise Ops','ServiceNow · ITSM · CMDB'],
+    ]
+  },
+  {
+    id:'cloud', abbr:'CL', color:'#22d3ee',
+    title:'Cloud', sub:'Azure · AWS · GCP',
+    rows:[
+      ['Azure','AKS · Container Apps · Functions'],
+      ['AWS','Bedrock · ECS / EKS'],
+      ['GCP','Cloud-native deployments'],
+      ['Impact','Multi-cloud transformation · 20–30% delivery effort optimisation'],
+    ]
+  }
+];
+
+/* ─── RENDER CARDS ─────────────────────────────────────── */
+function renderCards() {
+  const grid = document.getElementById('cards-grid');
+  DOMAINS.forEach(d => {
+    const bg   = d.color + '18';
+    const rows = d.rows.map(([k,v]) =>
+      `<div class="d-row"><div class="d-key">${k}</div><div class="d-val">${v}</div></div>`
+    ).join('');
+    const el = document.createElement('div');
+    el.className = 'd-card fup';
+    el.id = 'card-' + d.id;
+    el.style.borderTopColor = d.color;
+    el.innerHTML = `
+      <div class="d-card-head">
+        <div class="d-icon" style="background:${bg};color:${d.color}">${d.abbr}</div>
+        <div><h3>${d.title}</h3><p>${d.sub}</p></div>
       </div>
-    </header>
+      <div class="d-body">${rows}</div>`;
+    grid.appendChild(el);
+  });
+}
 
-    <!-- about and skills section -->
-    <section class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <div class="about">
-            <h3 class="accent">Professional Backgroud</h3>
-			<h4>Full-stack Developer and Solution Architect</h4>
-			<h5> 15+ years of cross business domain and technology platform experience of which 10+ years spent in overseas. </h5>
-            <p>
-				I am a software engineer, test automation architect, devops specialist and a full stack developer who loves to build web apps and native apps, along with the implementation of test automation solutions as the core strength. I currently work with CTS as a Solution Architect.</b>
-            </p>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="skills">
-            <h2 class="white">Skills</h2>
-            <strong>Test Automation (Python, Java, C#, NodeJS, Selenium, BDD)</strong>
-            <span class="pull-right">90%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="90"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 90%;"
-              ></div>
-			</div>
-			<strong>DevOps(Azure, Jenkins, Atlassian)</strong>
-            <span class="pull-right">50%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="50"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 50%;"
-              ></div>
-			</div>
-			<strong>Git, JIRA, Agile Central, ALM</strong>
-            <span class="pull-right">70%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="70"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 70%;"
-              ></div>
-			</div>
-			<strong>VSC, Eclipse, Maven, YML, Android Studio, XCODE</strong>
-            <span class="pull-right">50%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="50"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 50%;"
-              ></div>
-            </div>
-            <strong>Native App (IOS, Android)</strong>
-            <span class="pull-right">30%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="30"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 30%;"
-              ></div>
-			</div>
-			<strong>React and React Native</strong>
-            <span class="pull-right">50%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="50"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 50%;"
-              ></div>
-			</div>
-			<strong>UI/UX</strong>
-            <span class="pull-right">50%</span>
-            <div class="progress">
-              <div
-                class="progress-bar progress-bar-primary"
-                role="progressbar"
-                aria-valuenow="50"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style="width: 50%;"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+/* ─── MIND MAP CANVAS ──────────────────────────────────── */
+function renderMindMap() {
+  const canvas = document.getElementById('mindmap');
+  const wrap   = canvas.parentElement;
+  const DPR    = window.devicePixelRatio || 1;
+  let   hot    = -1;
+  let   nodes  = [];
 
-    <!-- education and languages -->
-    <section class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-12">
-          <div class="education">
-            <h2 class="white">Education</h2>
-            <div class="education-content">
-              <h4 class="education-title accent">Master of Information Technology</h4>
-              <div class="education-school">
-                <h5>Technology</h5>
-                <span></span>
-                <h5>2000 Apr - 2003 Apr</h5>
-			  </div>
-			  <h4 class="education-title accent">Udacity Nano-Degree</h4>
-              <div class="education-school">
-                <h5>React and React Native</h5>
-                <span></span>
-                <h5>2020 May - 2020 Sep</h5>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-          <div class="languages">
-            <h2>Hobbies </h2>
-            <ul>
-			  <li>Robotics / IOT</li>
-			  <li>Machin Learning</li>
-              <li>Writing</li>
-              <li>Video Editing</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+  function rrect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w, y, x+w, y+r);
+    ctx.lineTo(x+w, y+h-r); ctx.quadraticCurveTo(x+w, y+h, x+w-r, y+h);
+    ctx.lineTo(x+r, y+h); ctx.quadraticCurveTo(x, y+h, x, y+h-r);
+    ctx.lineTo(x, y+r); ctx.quadraticCurveTo(x, y, x+r, y);
+    ctx.closePath();
+  }
 
-    <!-- contact and experience -->
-    <section class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-12">
-          <div class="contact">
-            <h2>Contact</h2>
-            <p><i class="fa fa-map-marker"></i> Lake Town, Kolkata</p>
-            <p><i class="fa fa-phone"></i> +91 98743 29506</p>
-            <p><i class="fa fa-envelope"></i> roysantu2002@yahoo.com</p>
-          </div>
-        </div>
-        <div class="col-md-8 col-sm-12">
-          <div class="experience">
-            <h2 class="white">Experiences</h2>
-            <div class="experience-content">
+  function draw() {
+    const cw  = wrap.clientWidth;
+    const ch  = Math.round(cw * 0.52);
+    canvas.style.width  = cw + 'px';
+    canvas.style.height = ch + 'px';
+    canvas.width  = Math.round(cw * DPR);
+    canvas.height = Math.round(ch * DPR);
 
-              <h4 class="experience-title accent">Solution Architect</h4>
-			  <h5>Cognizant Technology Solutions (UBS)</h5>
-              <span></span>
-			  <h5>2019 Mar - Till Date</h5>
-			  <h4 class="experience-title accent">Development Manager</h4>
-			  <h5>ICREATE Solutions (Startups)</h5>
-			  <span></span>
-			  <h5>2018 May - 2019 Feb</h5>
-			  <h4 class="experience-title accent">Solution Architect</h4>
-			  <h5>HP Inc (R&D)</h5>
-			  <span></span>
-			  <h5>2014 Feb - 2018 Mar</h5>
-			  <h4 class="experience-title accent">Test Automation Manager</h4>
-			  <h5>Capgemini (Standard Chartered Bank)</h5>
-			  <span></span>
-			  <h5>2012 Sep- 2014 Dec</h5>
+    const ctx = canvas.getContext('2d');
+    ctx.scale(DPR, DPR);
+    ctx.clearRect(0, 0, cw, ch);
 
-			  <h4 class="experience-title accent">Senior Consultant</h4>
-			  <h5>Kasikorn Bank</h5>
-              <span></span>
-			  <h5>2012 Jan - 2012 Jul</h5>
+    const cx = cw / 2, cy = ch / 2;
+    const R  = Math.min(cw, ch) * 0.37;
+    const nW = Math.max(Math.min(cw * 0.16, 116), 68);
+    const nH = 34;
 
-			  <h4 class="experience-title accent">Test Automation Manager</h4>
-			  <h5>Credit Suisse Bank</h5>
-              <span></span>
-			  <h5>2005 Apr - 2011 Dec</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    nodes = DOMAINS.map((d, i) => {
+      const a = (i / DOMAINS.length) * Math.PI * 2 - Math.PI / 2;
+      return { x: cx + R * Math.cos(a), y: cy + R * Math.sin(a), nW, nH, d };
+    });
 
-    <!-- footer section -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-            <p>Copyright &copy; 2020 Santu Roy - Profile</p>
-            <ul class="social-icons">
-              <li><a href="https://www.linkedin.com/in/santtu-roy-4227601b/" class="fa fa-linkedin"></a></li>
-              <li><a href="#https://github.com/roysantu2002" class="fa fa-github"></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+    /* lines */
+    nodes.forEach(({ x, y, d }, i) => {
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(x, y);
+      ctx.strokeStyle = i === hot ? d.color + 'bb' : d.color + '30';
+      ctx.lineWidth   = i === hot ? 2 : 1.2;
+      ctx.stroke();
+    });
 
-    <!-- javascript js -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.backstretch.min.js"></script>
-    <script src="js/custom.js"></script>
-  </body>
+    /* centre glow */
+    const cr = Math.min(cw, ch) * 0.072;
+    ctx.beginPath(); ctx.arc(cx, cy, cr+6, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(240,180,41,0.06)'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx, cy, cr, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(240,180,41,0.14)'; ctx.fill();
+    ctx.strokeStyle = '#f0b429'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = '#f0b429';
+    ctx.font = `700 ${Math.round(cr * 0.7)}px 'Space Grotesk', sans-serif`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('SR', cx, cy);
+
+    /* nodes */
+    nodes.forEach(({ x, y, d }, i) => {
+      const on = i === hot;
+      rrect(ctx, x-nW/2, y-nH/2, nW, nH, 7);
+      ctx.fillStyle   = on ? d.color+'2e' : d.color+'15';
+      ctx.fill();
+      ctx.strokeStyle = on ? d.color : d.color+'77';
+      ctx.lineWidth   = on ? 1.8 : 1.2;
+      ctx.stroke();
+
+      /* abbr dot */
+      const ir = 10, ix = x - nW/2 + ir + 5;
+      ctx.beginPath(); ctx.arc(ix, y, ir, 0, Math.PI*2);
+      ctx.fillStyle = d.color+'28'; ctx.fill();
+      ctx.fillStyle = d.color;
+      ctx.font = `700 8px Inter, sans-serif`;
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText(d.abbr, ix, y);
+
+      /* title */
+      const tx = ix + ir + 4;
+      ctx.fillStyle   = on ? '#fff' : '#e2e8f0';
+      ctx.font = `600 ${Math.round(nW * 0.098 + 1.4)}px Inter, sans-serif`;
+      ctx.textAlign = 'left';
+      ctx.fillText(d.title, tx, y - 5);
+      ctx.fillStyle = '#8899aa';
+      ctx.font = '400 7.5px Inter, sans-serif';
+      ctx.fillText((d.sub.split('·')[0]||d.sub).trim(), tx, y + 8);
+    });
+  }
+
+  function hit(ex, ey) {
+    const r  = canvas.getBoundingClientRect();
+    const mx = ex - r.left, my = ey - r.top;
+    for (let i = 0; i < nodes.length; i++) {
+      const { x, y, nW, nH } = nodes[i];
+      if (mx >= x-nW/2 && mx <= x+nW/2 && my >= y-nH/2 && my <= y+nH/2) return i;
+    }
+    return -1;
+  }
+
+  draw();
+  window.addEventListener('resize', draw);
+
+  canvas.addEventListener('mousemove', e => {
+    const i = hit(e.clientX, e.clientY);
+    if (i !== hot) { hot = i; draw(); }
+    canvas.style.cursor = i >= 0 ? 'pointer' : 'default';
+  });
+  canvas.addEventListener('mouseleave', () => { if (hot >= 0) { hot = -1; draw(); } });
+  canvas.addEventListener('click', e => {
+    const i = hit(e.clientX, e.clientY);
+    if (i >= 0) {
+      const el = document.getElementById('card-' + DOMAINS[i].id);
+      if (el) el.scrollIntoView({ behavior:'smooth', block:'center' });
+    }
+  });
+}
+
+/* ─── SCROLL FADE-IN ───────────────────────────────────── */
+function initFade() {
+  const obs = new IntersectionObserver(entries =>
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.1 }
+  );
+  document.querySelectorAll('.fup').forEach(el => obs.observe(el));
+}
+
+/* ─── BOOT ─────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  renderCards();
+  renderMindMap();
+  setTimeout(initFade, 100);
+});
+</script>
+</body>
 </html>
