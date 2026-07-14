@@ -785,13 +785,9 @@ function renderMindMap() {
       const mxW = x + nW/2 - tx - 5;   /* available width to right edge */
 
       ctx.fillStyle = on ? '#fff' : '#e2e8f0';
-      ctx.font = '600 9px Inter, sans-serif';
+      ctx.font = '600 9.5px Inter, sans-serif';
       ctx.textAlign = 'left';
-      ellipsis(ctx, d.title, tx, y - 5, mxW);
-
-      ctx.fillStyle = '#8899aa';
-      ctx.font = '400 7px Inter, sans-serif';
-      ellipsis(ctx, (d.sub.split('·')[0]||d.sub).trim(), tx, y + 7, mxW);
+      ellipsis(ctx, d.title, tx, y + 1, mxW);
 
       ctx.restore();
     });
