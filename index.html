@@ -311,7 +311,7 @@
   <div class="nav-left">
     <div class="nav-mono">SR</div>
     <div>
-      <div class="nav-name">Santu Roy</div>
+      <div class="nav-name">Saantu Roy</div>
       <div class="nav-sub">AI Solution Architect · Agentic AI Specialist</div>
     </div>
   </div>
@@ -328,12 +328,12 @@
 
   <div class="badge-pill">
     <span class="badge-dot"></span>
-    Quick Tech Insights · Interview Mind Map
+    Quick Tech Insights
   </div>
 
   <img src="images/tm-easy-profile.jpeg" alt="Santu Roy" class="hero-photo">
 
-  <h1>Santu <span class="gold">Roy</span></h1>
+  <h1>Saantu <span class="gold">Roy</span></h1>
 
   <div class="hero-role">
     <span class="role-word">AI Solution Architect</span>
@@ -705,7 +705,7 @@ function renderMindMap() {
 
   function draw() {
     const cw  = wrap.clientWidth;
-    const ch  = Math.round(cw * 0.52);
+    const ch  = Math.round(cw * 0.58);
     canvas.style.width  = cw + 'px';
     canvas.style.height = ch + 'px';
     canvas.width  = Math.round(cw * DPR);
@@ -716,8 +716,8 @@ function renderMindMap() {
     ctx.clearRect(0, 0, cw, ch);
 
     const cx = cw / 2, cy = ch / 2;
-    const R  = Math.min(cw, ch) * 0.37;
-    const nW = Math.max(Math.min(cw * 0.16, 116), 68);
+    const R  = Math.min(cw, ch) * 0.41;
+    const nW = Math.max(Math.min(cw * 0.12, 88), 54);
     const nH = 34;
 
     nodes = DOMAINS.map((d, i) => {
