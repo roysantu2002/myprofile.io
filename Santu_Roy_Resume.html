@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saantu Roy — AI Solution Architect · Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:     #0f172a;
+      --ink2:    #334155;
+      --muted:   #64748b;
+      --gold:    #b45309;
+      --border:  #e2e8f0;
+      --bg-rule: #f8fafc;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.55;
+      color: var(--ink);
+      background: #fff;
+      padding: 0;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.6rem 2.8rem;
+    }
+
+    /* ── HEADER ── */
+    .hd-name {
+      font-size: 26pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .hd-title {
+      font-size: 10pt;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+    .hd-contact {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      color: var(--muted);
+      display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem;
+    }
+    .hd-contact a { color: var(--muted); text-decoration: none; }
+
+    hr.rule {
+      border: none;
+      border-top: 1.5px solid var(--ink);
+      margin: 0.85rem 0;
+    }
+    hr.rule-light {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.7rem 0;
+    }
+
+    /* ── SECTIONS ── */
+    .sec-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section { margin-bottom: 1.4rem; }
+
+    /* ── SUMMARY ── */
+    .summary p {
+      font-size: 10pt;
+      line-height: 1.65;
+      color: var(--ink2);
+    }
+
+    /* ── SKILLS TABLE ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      gap: 0.25rem 0.9rem;
+    }
+    .sk-cat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.8pt;
+      font-weight: 500;
+      color: var(--gold);
+      white-space: nowrap;
+      padding-top: 0.07rem;
+    }
+    .sk-val {
+      font-size: 9.5pt;
+      color: var(--ink2);
+      line-height: 1.55;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item { margin-bottom: 1.2rem; }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.08rem;
+    }
+    .exp-role {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .exp-dates {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .exp-company {
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.35rem;
+    }
+    .exp-context {
+      font-size: 9pt;
+      color: var(--ink2);
+      margin-bottom: 0.55rem;
+      font-style: italic;
+    }
+    .exp-bul { padding-left: 0; list-style: none; }
+    .exp-bul li {
+      font-size: 9.5pt;
+      color: var(--ink2);
+      padding-left: 0.95rem;
+      position: relative;
+      margin-bottom: 0.28rem;
+      line-height: 1.6;
+    }
+    .exp-bul li::before {
+      content: '▸';
+      position: absolute; left: 0;
+      color: var(--gold);
+      font-size: 7.5pt;
+      top: 3px;
+    }
+    .exp-bul li strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* ── PROJECTS ── */
+    .proj-item { margin-bottom: 0.85rem; }
+    .proj-item:last-child { margin-bottom: 0; }
+    .proj-name {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .proj-client {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--gold);
+    }
+    .proj-desc {
+      font-size: 9pt;
+      color: var(--ink2);
+      line-height: 1.6;
+      margin-top: 0.1rem;
+    }
+
+    /* ── EDU & CERTS ── */
+    .edu-item, .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.3rem;
+    }
+    .edu-deg {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .edu-org {
+      font-size: 9pt;
+      color: var(--ink2);
+    }
+    .edu-yr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .certs-table {
+      display: grid;
+      grid-template-columns: max-content 1fr max-content;
+      gap: 0.2rem 1rem;
+      align-items: baseline;
+    }
+    .cert-yr {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .cert-name {
+      font-size: 9.5pt;
+      color: var(--ink2);
+    }
+    .cert-org {
+      font-size: 8.5pt;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { font-size: 10pt; }
+      .page { padding: 1.8rem 2rem; max-width: 100%; }
+      .hd-name { font-size: 22pt; }
+      a { color: inherit !important; }
+      section { page-break-inside: avoid; }
+    }
+
+    @page {
+      size: A4;
+      margin: 1.6cm 1.8cm;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <div class="hd-name">Saantu Roy</div>
+  <div class="hd-title">AI Solution Architect &nbsp;·&nbsp; Agentic AI Systems Lead &nbsp;·&nbsp; Enterprise Engineering Leader</div>
+  <div class="hd-contact">
+    <span>roysantu2002@gmail.com</span>
+    <span>+91-919-874-329506</span>
+    <a href="https://saanturoy.com">saanturoy.com</a>
+    <a href="https://linkedin.com/in/roysantu">linkedin.com/in/roysantu</a>
+    <span>Kolkata, India &nbsp;·&nbsp; Open to global remote &amp; relocation</span>
+  </div>
+  <hr class="rule">
+
+  <!-- ── PROFESSIONAL SUMMARY ── -->
+  <section class="summary">
+    <div class="sec-title">Professional Summary</div>
+    <p>
+      Enterprise AI Architect and Engineering Leader with <strong>18+ years</strong> building mission-critical platforms
+      across global banking and fintech — in Singapore, Australia, Thailand, the USA, and India.
+      Deep hands-on expertise in <strong>Agentic AI systems design</strong>: multi-LLM orchestration (Azure OpenAI, Anthropic Claude,
+      AWS Bedrock, Google Gemini), <strong>RAG pipeline engineering</strong>, MCP server development, and <strong>LangGraph-based
+      multi-agent workflows</strong>. Proven delivery record: <strong>35% MTTR reduction</strong> through agentic ITSM automation,
+      <strong>40% engineering effort reduction</strong> via GenAI-powered DevOps, and 20–30% delivery optimisation across multi-cloud
+      transformation programmes. Bridges engineering execution (Python, FastAPI, Spring Boot, Kubernetes) with enterprise
+      architecture governance (TOGAF) and C-suite stakeholder leadership.
+    </p>
+  </section>
+
+  <!-- ── CORE COMPETENCIES ── -->
+  <section>
+    <div class="sec-title">Core Competencies</div>
+    <div class="skills-grid">
+      <div class="sk-cat">Agentic AI &amp; LLMs</div>
+      <div class="sk-val">Azure OpenAI · Anthropic Claude · AWS Bedrock · Google Gemini · RAG (Agentic &amp; Traditional) · MCP (Model Context Protocol) · LangGraph · Multi-Agent Systems · Prompt Engineering · NLP · LLM Evaluation</div>
+
+      <div class="sk-cat">Languages</div>
+      <div class="sk-val">Python · Java · TypeScript · JavaScript (ES6+) · Node.js · Solidity · Shell</div>
+
+      <div class="sk-cat">Back-End</div>
+      <div class="sk-val">FastAPI · Spring Boot · Django · NestJS · Express.js · REST APIs · GraphQL · Microservices · Kafka · Redis</div>
+
+      <div class="sk-cat">Front-End</div>
+      <div class="sk-val">React · Next.js · Angular · Tailwind CSS · Material UI · Redux · Module Federation</div>
+
+      <div class="sk-cat">Cloud &amp; DevOps</div>
+      <div class="sk-val">AWS (Bedrock · EKS) · Azure (AKS · Functions) · GCP · Kubernetes · Docker · Terraform · Ansible · GitHub Actions · GitLab CI/CD · Jenkins · Azure DevOps</div>
+
+      <div class="sk-cat">Data &amp; Storage</div>
+      <div class="sk-val">PostgreSQL · MySQL · MongoDB · Oracle · CouchDB · Vector DBs (Pinecone · Supabase pgvector)</div>
+
+      <div class="sk-cat">Enterprise &amp; Arch</div>
+      <div class="sk-val">ServiceNow · ITSM · CMDB · TOGAF · Event-Driven Architecture · Microservices · API Gateway · IaC · Cloud Migration</div>
+
+      <div class="sk-cat">Blockchain</div>
+      <div class="sk-val">Hyperledger Fabric · Ethereum · Solidity · Smart Contracts · dApps · NFTs</div>
+    </div>
+  </section>
+
+  <!-- ── PROFESSIONAL EXPERIENCE ── -->
+  <section>
+    <div class="sec-title">Professional Experience</div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Solution Architect — AI Tech Lead</div>
+        <div class="exp-dates">Apr 2022 – May 2026</div>
+      </div>
+      <div class="exp-company">Wipro Limited, Bangalore &nbsp;·&nbsp; Global Clients: Citibank, UBS</div>
+      <div class="exp-context">Spearheaded enterprise AI transformation for Tier-1 banking clients — architecting production agentic AI systems that delivered measurable reductions in operational costs and delivery cycle times at scale.</div>
+      <ul class="exp-bul">
+        <li><strong>Architected a Unified Agentic AI Platform</strong> for intelligent ITSM operations: a multi-LLM orchestration layer spanning Azure OpenAI, Anthropic Claude, AWS Bedrock, and Google Gemini — integrated with ServiceNow across multi-cloud (AWS + Azure + GCP). Automated 60%+ of Tier-1 incident routing and reduced mean-time-to-resolution by <strong>35%</strong>.</li>
+        <li><strong>Built production MCP (Model Context Protocol) servers</strong> exposing enterprise data sources — CMDB, ITSM tickets, runbooks — as tool-callable context for LLM agents, enabling real-time grounded AI decision-making in service operations.</li>
+        <li><strong>Engineered LangGraph multi-agent workflows</strong> for incident triage, root cause analysis, and automated remediation — reducing analyst investigation time and improving first-pass resolution rates in production.</li>
+        <li><strong>Designed and delivered CraftBOT</strong>, a GenAI-powered infrastructure automation assistant using RAG workflows, Ansible playbook generation, and Python microservices — enabling DevOps engineers to provision infrastructure via natural language. Cut engineering effort by <strong>40%</strong> across cloud operations.</li>
+        <li>Drove end-to-end <strong>cloud transformation</strong> across AWS, Azure, and GCP: IaC (Terraform, Ansible), CI/CD pipelines (GitHub Actions, GitLab, Jenkins), and observability stacks — achieving 20–30% delivery effort optimisation with measurable ROI.</li>
+        <li>Built production-grade microservices (Spring Boot, FastAPI, Django) and React/Next.js front-ends for enterprise-scale cloud-native banking deployments.</li>
+        <li>Defined transformation roadmaps, led architecture governance, and mentored cross-functional teams of 8–12 across India and offshore; owned stakeholder communication from engineering sprint to C-suite.</li>
+      </ul>
+    </div>
+
+    <hr class="rule-light">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Solution Architect</div>
+        <div class="exp-dates">Mar 2019 – Apr 2022</div>
+      </div>
+      <div class="exp-company">Cognizant Technology Solutions, Kolkata</div>
+      <ul class="exp-bul">
+        <li>Led enterprise conversational AI initiatives — built customer insights platforms using Rasa, Google Dialogflow, and Amazon Lex, adopted across <strong>3 enterprise banking clients</strong>.</li>
+        <li><strong>Architected the openIDL blockchain regulatory data pipeline</strong> on Hyperledger Fabric with Spring Boot, MongoDB, and AWS — enabling multi-party insurance regulatory compliance data exchange with distributed trust; significantly reduced reconciliation time.</li>
+        <li>Built full-stack web applications (React, Angular, Next.js) and scalable REST microservices backends (Spring Boot, FastAPI) on Kubernetes for enterprise banking clients.</li>
+        <li>Led hybrid cloud modernisation programmes; owned sprint governance, technical delivery, and cross-functional stakeholder management for teams of 6–10.</li>
+      </ul>
+    </div>
+
+    <hr class="rule-light">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Solution Architect</div>
+        <div class="exp-dates">Feb 2014 – May 2018</div>
+      </div>
+      <div class="exp-company">HP Inc., Singapore</div>
+      <ul class="exp-bul">
+        <li><strong>Built WOOBE/MOOBE</strong>, HP's printing-as-a-service platform — Python, Django, Flask, REST APIs, and NLP-driven workflow automation enabling enterprise-scale print routing and SLA management for HP's global client base.</li>
+        <li>Designed and integrated ML models for customer behaviour analytics and predictive workflow automation across HP enterprise platforms.</li>
+        <li>Developed firmware validation and testing automation suites — significantly reducing manual engineering effort across hardware and software teams.</li>
+      </ul>
+    </div>
+
+    <hr class="rule-light">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Technical Lead</div>
+        <div class="exp-dates">Sep 2012 – Dec 2013</div>
+      </div>
+      <div class="exp-company">Standard Chartered Bank, Singapore</div>
+      <ul class="exp-bul">
+        <li>Led design and delivery of ICDMS — enterprise document and compliance management platform on Core Java with workflow orchestration for banking regulatory operations.</li>
+        <li>Translated complex regulatory requirements into production-grade technical architecture; drove high-performance automation frameworks for operational workflows.</li>
+      </ul>
+    </div>
+
+    <hr class="rule-light">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Technical Manager</div>
+        <div class="exp-dates">Jan 2012 – Jun 2012</div>
+      </div>
+      <div class="exp-company">Kasikorn Bank, Bangkok, Thailand</div>
+      <ul class="exp-bul">
+        <li>Led Temenos core banking modernisation across trade finance modules; delivered reconciliation workflows, Shell scripting automation, and MQ-based enterprise integration solutions.</li>
+      </ul>
+    </div>
+
+    <hr class="rule-light">
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-role">Technical Lead</div>
+        <div class="exp-dates">Apr 2006 – Dec 2011</div>
+      </div>
+      <div class="exp-company">Credit Suisse Bank, Singapore</div>
+      <ul class="exp-bul">
+        <li>Led technical delivery for GOMAN — Core Java enterprise automation for high-volume equities and derivatives trading; improved transaction workflows, reconciliation automation, and platform reliability.</li>
+        <li>Implemented MiFID compliance automation and MQ-based enterprise messaging for secure high-volume financial transaction processing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ── KEY AI PROJECTS ── -->
+  <section>
+    <div class="sec-title">Key AI &amp; Engineering Projects</div>
+
+    <div class="proj-item">
+      <span class="proj-name">Unified Agentic AI Platform for Intelligent Service Operations</span>
+      <span class="proj-client"> &nbsp;·&nbsp; Wipro / Citibank</span>
+      <div class="proj-desc">Multi-LLM agentic system (Azure OpenAI, Anthropic Claude, Google Gemini, AWS Bedrock) integrated with ServiceNow ITSM. Built MCP servers exposing enterprise CMDB and runbooks as agent tools, LangGraph orchestration workflows, Python microservices, and a Next.js operations dashboard. Automated 60%+ Tier-1 incident routing; 35% MTTR reduction at enterprise scale.</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">CraftBOT — GenAI Infrastructure Automation Assistant</span>
+      <span class="proj-client"> &nbsp;·&nbsp; Wipro</span>
+      <div class="proj-desc">RAG-powered DevOps assistant (Azure OpenAI + Python + Django + Ansible). Engineers provision cloud infrastructure, generate configuration playbooks, and execute DevOps workflows via natural language prompts. Delivered 40% engineering effort reduction across cloud operations teams.</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">openIDL Blockchain Regulatory Data Pipeline</span>
+      <span class="proj-client"> &nbsp;·&nbsp; Cognizant</span>
+      <div class="proj-desc">Hyperledger Fabric blockchain pipeline for insurance regulatory reporting: Spring Boot, MongoDB, AWS. Secure distributed REST APIs and multi-party compliance data exchange workflows.</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">ARENA — Enterprise Engagement &amp; Gamification Platform</span>
+      <span class="proj-client"> &nbsp;·&nbsp; Wipro</span>
+      <div class="proj-desc">Cloud-native platform (React, Node.js, Azure Functions, MongoDB) delivering modular UI components, REST APIs, and backend automation for enterprise learning and engagement at scale.</div>
+    </div>
+
+    <div class="proj-item">
+      <span class="proj-name">WOOBE / MOOBE — HP Printing-as-a-Service</span>
+      <span class="proj-client"> &nbsp;·&nbsp; HP Inc., Singapore</span>
+      <div class="proj-desc">Cloud-based enterprise print automation (Python, Django, Flask, NLP workflows) enabling intelligent customer routing, operational automation, and SLA management for HP's global enterprise print services.</div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section>
+    <div class="sec-title">Education</div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-deg">M.Sc. Information Technology</div>
+        <div class="edu-org">Manipal Sikkim University, Karnataka</div>
+      </div>
+      <div class="edu-yr">2001 – 2004</div>
+    </div>
+    <div class="edu-item">
+      <div>
+        <div class="edu-deg">B.Sc. Computer Science</div>
+        <div class="edu-org">Gauhati University, Assam</div>
+      </div>
+      <div class="edu-yr">1995 – 1998</div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ── -->
+  <section>
+    <div class="sec-title">Certifications &amp; Continuous Learning</div>
+    <div class="certs-table">
+      <div class="cert-yr">2026 · Pursuing</div>
+      <div class="cert-name">Executive Post Graduate Programme in Generative AI</div>
+      <div class="cert-org">IIT Kharagpur</div>
+
+      <div class="cert-yr">2025</div>
+      <div class="cert-name">RAG and Agentic AI — Professional Certificate</div>
+      <div class="cert-org">IBM</div>
+
+      <div class="cert-yr">2022</div>
+      <div class="cert-name">Professional Certificate in Blockchain</div>
+      <div class="cert-org">IIT Kanpur</div>
+
+      <div class="cert-yr">2021</div>
+      <div class="cert-name">Nanodegree in React</div>
+      <div class="cert-org">Udacity</div>
+
+      <div class="cert-yr">2021</div>
+      <div class="cert-name">Professional Data Science Certification</div>
+      <div class="cert-org">IBM</div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
